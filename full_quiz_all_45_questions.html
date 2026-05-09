@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interactive Quiz</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary2: #dbeafe;
+    --good: #16a34a;
+    --bad: #dc2626;
+    --border: #dbe4f0;
+    --shadow: 0 8px 28px rgba(16, 24, 40, 0.08);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px;
+  }
+  .hero {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+  }
+  .subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    font-weight: 700;
+  }
+  .section-title {
+    margin: 26px 0 12px;
+    font-size: 22px;
+  }
+  .section-note {
+    margin: -4px 0 12px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .qtext {
+    margin: 0 0 12px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .options {
+    display: grid;
+    gap: 10px;
+  }
+  .option {
+    padding: 14px 14px;
+    border-radius: 12px;
+    border: 1px solid #cfd8e3;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.15s ease;
+    line-height: 1.35;
+  }
+  .option:hover { transform: translateY(-1px); background: #f8fbff; }
+  .option.correct {
+    background: #dcfce7;
+    border-color: #22c55e;
+  }
+  .option.wrong {
+    background: #fee2e2;
+    border-color: #ef4444;
+  }
+  .feedback {
+    margin-top: 12px;
+    font-weight: 700;
+    min-height: 24px;
+  }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .top-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 16px;
+  }
+  .btn {
+    appearance: none;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .btn.primary { background: var(--primary); color: white; }
+  .btn.secondary { background: #475569; color: white; }
+  .btn.ghost { background: #e5e7eb; color: #111827; }
+  .footer-note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 12px; }
+    .card { padding: 14px; }
+    .qtext { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>Interactive Quiz</h1>
+    <p class="subtitle">All questions are on one page. Questions are shuffled within each section, options are shuffled, and the correct answer is revealed only after you tap an option.</p>
+    <div class="summary-grid">
+      <div class="stat" id="answeredStat">Answered: 0 / 45</div>
+      <div class="stat" id="correctStat">Correct: 0</div>
+      <div class="stat" id="wrongStat">Wrong: 0</div>
+      <div class="stat" id="scoreStat">Score: 0%</div>
+      <div class="stat" id="mcqStat">MCQ: 0 / 25</div>
+      <div class="stat" id="tfStat">T/F: 0 / 20</div>
+    </div>
+    <div class="top-actions">
+      <button class="btn primary" id="shuffleBtn">Shuffle Again</button>
+      <button class="btn secondary" id="resetBtn">Reset Answers</button>
+      <button class="btn ghost" id="showAllBtn">Show All Answers</button>
+    </div>
+    <div class="footer-note">Tip: tap an option to mark it. Tapping one option locks that question.</div>
+  </div>
+
+  <div id="mcqSection"></div>
+  <div id="tfSection"></div>
+</div>
+
+<script>
+const data = {"mcq": [{"q": "What is the purpose of a digital low-pass filter?", "options": ["Increase noise", "Reduce noise in signals", "Amplify signals", "Compress data"], "answer": "Reduce noise in signals"}, {"q": "In ROC analysis, a curve closer to the top-left corner indicates:", "options": ["Poor performance", "Random guessing", "High accuracy", "High false negatives"], "answer": "High accuracy"}, {"q": "Which quantity represents the energy of a time series?", "options": ["Mean", "Variance", "Second moment", "Skewness"], "answer": "Second moment"}, {"q": "Spectral Emitted Energy (SEE) operates in which frequency range?", "options": ["1–10 Hz", "10–100 Hz", "150–500 kHz", "1–5 MHz"], "answer": "150–500 kHz"}, {"q": "A fault-feature vector primarily represents:", "options": ["Control signals", "Maintenance cost", "Data describing system condition", "Sensor hardware specifications"], "answer": "Data describing system condition"}, {"q": "Which of the following is NOT a method for reducing false alarms?", "options": ["Data validation", "Feature extraction", "Increasing sensor noise", "Algorithm selection"], "answer": "Increasing sensor noise"}, {"q": "In Paris’ law for crack propagation, what does α represent?", "options": ["Stress intensity", "Crack length", "Number of cycles", "Material constant"], "answer": "Crack length"}, {"q": "What happens to error covariance during the time update step?", "options": ["It decreases", "It remains constant", "It increases", "It becomes zero"], "answer": "It increases"}, {"q": "The first moment of a discrete time series represents:", "options": ["Energy", "Variance", "Mean", "Skewness"], "answer": "Mean"}, {"q": "In neural networks, what does the activation function (σ) do?", "options": ["Stores weights", "Maps inputs to outputs nonlinearly", "Reduces data noise", "Measures probability"], "answer": "Maps inputs to outputs nonlinearly"}, {"q": "Which metric measures the uncertainty reduction provided by a feature?", "options": ["Distance measure", "Information gain", "Correlation coefficient", "False positive rate"], "answer": "Information gain"}, {"q": "Compression ratio is defined as:", "options": ["Compressed bits / Original bits", "Original bits / Compressed bits", "Error / Signal", "Signal / Noise"], "answer": "Original bits / Compressed bits"}, {"q": "What is the main purpose of data fusion in condition-based maintenance systems?", "options": ["To reduce sensor cost", "To combine multisensory data for better diagnostics", "To eliminate noise completely", "To replace physical models"], "answer": "To combine multisensory data for better diagnostics"}, {"q": "What does Phase Measurement determine?", "options": ["Energy loss", "Angular difference between shaft position and vibration", "Temperature variation", "Noise level"], "answer": "Angular difference between shaft position and vibration"}, {"q": "A virtual sensor is best described as:", "options": ["A physical sensor device", "A sensor measuring temperature only", "Combination of sensors and DSP algorithms", "A mechanical component"], "answer": "Combination of sensors and DSP algorithms"}, {"q": "Which technique is best suited for analyzing high-bandwidth signals like vibration?", "options": ["Fuzzy Logic", "Wavelet Neural Network (WNN)", "Bayesian Method", "GLRT"], "answer": "Wavelet Neural Network (WNN)"}, {"q": "Which assumption is required for optimal Kalman filtering?", "options": ["Nonlinear system with colored noise", "Linear system with Gaussian noise", "Static system without noise", "Deterministic system only"], "answer": "Linear system with Gaussian noise"}, {"q": "Which transform is commonly used to convert time-domain signals into frequency-domain signals for fault diagnosis?", "options": ["Laplace Transform", "Z-Transform", "Discrete Fourier Transform (DFT)", "Wavelet Packet Transform"], "answer": "Discrete Fourier Transform (DFT)"}, {"q": "In Dempster-Shafer theory, what is Bel(A)?", "options": ["Exact probability of A", "Total belief assigned to A and its subsets", "Complement of A", "Random variable"], "answer": "Total belief assigned to A and its subsets"}, {"q": "Which feature extraction method uses a threshold to select coefficients?", "options": ["Energy-based method", "Singularity-based method", "Coefficient-based method", "Model-based method"], "answer": "Coefficient-based method"}, {"q": "Recursive Least Squares (RLS) is a special case of:", "options": ["Neural Networks", "Kalman Filter", "Particle Filter", "Fuzzy Logic"], "answer": "Kalman Filter"}, {"q": "In Case-Based Reasoning (CBR), the first step is:", "options": ["Revise", "Retain", "Retrieve", "Reuse"], "answer": "Retrieve"}, {"q": "Fisher’s Discriminant Ratio (FDR) is used for:", "options": ["Noise filtering", "Feature ranking", "Signal compression", "Data acquisition"], "answer": "Feature ranking"}, {"q": "What is the key risk of data fusion systems?", "options": ["High computational speed", "Loss of all sensor data", "Fused result performing worse than individual tools", "Increased storage capacity"], "answer": "Fused result performing worse than individual tools"}, {"q": "Prognosis in condition-based maintenance refers to:", "options": ["Detecting faults after failure", "Predicting remaining useful life (RUL)", "Eliminating system noise", "Increasing system cost"], "answer": "Predicting remaining useful life (RUL)"}], "tf": [{"q": "A voting scheme using three measurements is often applied in sensor validation to determine which sensor reading is faulty and ensure reliability.", "answer": "True"}, {"q": "Dynamic system modeling using ordinary differential equations (ODEs) helps represent physical processes and can be converted into state-variable form for advanced analysis.", "answer": "True"}, {"q": "FFT-based methods are always suitable for analyzing both stationary and nonstationary signals without any limitations in time-frequency resolution.", "answer": "False"}, {"q": "Fault diagnosis involves detecting, isolating, and identifying faults even when the system is still operating in a degraded mode.", "answer": "True"}, {"q": "Fisher’s Discriminant Ratio (FDR) decreases when the difference between class means increases, making it harder to distinguish between different fault classes.", "answer": "False"}, {"q": "In the Kalman filter, the process noise and measurement noise are assumed to be dependent and follow a non-Gaussian distribution.", "answer": "False"}, {"q": "Data fusion in CBM systems only involves combining raw sensor signals and does not include combining extracted features or knowledge-based information.", "answer": "False"}, {"q": "Probability-based prognosis techniques require detailed physical models and complex differential equations to describe system behavior.", "answer": "False"}, {"q": "A digital low-pass filter is typically implemented after the signal has been sampled, and it is used to reduce high-frequency noise components from the measured signal.", "answer": "True"}, {"q": "Entropy and energy are not relevant indicators of system faults and therefore are not considered during feature extraction in condition monitoring applications.", "answer": "False"}, {"q": "Reducing false positives, false negatives, and false alarms is a critical objective in designing fault diagnosis systems.", "answer": "True"}, {"q": "Usage-pattern tracking in CBM systems is unnecessary because sensor data alone is sufficient to predict system failures accurately.", "answer": "False"}, {"q": "Kurtosis is a statistical measure that describes the heaviness of the tails or the presence of outliers in a distribution, and higher kurtosis indicates more extreme deviations from the mean.", "answer": "True"}, {"q": "In Case-Based Reasoning, once a solution is found, it is always discarded and never stored for future use.", "answer": "False"}, {"q": "Increasing the length of the DFT using zero padding changes the actual signal content but improves the visual smoothness and frequency resolution of the spectrum.", "answer": "False"}, {"q": "In GLRT-based fault detection, a failure is detected when the computed test statistic is less than or equal to the predefined threshold value.", "answer": "False"}, {"q": "Precision in prognostics refers to how close the predicted failure time is to the actual failure time.", "answer": "False"}, {"q": "The second moment of the mean, commonly referred to as variance, provides information about how widely the data values are spread around the mean and is always equal to zero for non-constant signals.", "answer": "False"}, {"q": "The moving average of a signal becomes smoother and changes more slowly as the window size increases, meaning larger windows reduce sensitivity to rapid signal fluctuations.", "answer": "True"}, {"q": "Wavelet neural networks are particularly useful for analyzing slowly varying signals such as temperature, while fuzzy logic is better suited for high-frequency vibration signals.", "answer": "False"}]};
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+let answered = 0;
+let correct = 0;
+let wrong = 0;
+let mcqAnswered = 0;
+let tfAnswered = 0;
+let allCards = [];
+
+function updateStats() {
+  document.getElementById('answeredStat').innerText = `Answered: ${answered} / 45`;
+  document.getElementById('correctStat').innerText = `Correct: ${correct}`;
+  document.getElementById('wrongStat').innerText = `Wrong: ${wrong}`;
+  document.getElementById('scoreStat').innerText = `Score: ${Math.round((correct / 45) * 100)}%`;
+  document.getElementById('mcqStat').innerText = `MCQ: ${mcqAnswered} / 25`;
+  document.getElementById('tfStat').innerText = `T/F: ${tfAnswered} / 20`;
+}
+
+function makeCard(item, idx, typeLabel, qNumber) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.done = '0';
+  card.dataset.type = item.type;
+  card.dataset.answer = item.answer;
+
+  const h = document.createElement('h3');
+  h.className = 'qtext';
+  h.innerText = `${typeLabel} Q${qNumber}. ${item.q}`;
+  card.appendChild(h);
+
+  const optionsWrap = document.createElement('div');
+  optionsWrap.className = 'options';
+
+  let options = [...item.options];
+  shuffle(options);
+
+  options.forEach((opt) => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.innerText = opt;
+
+    div.addEventListener('click', () => {
+      if (card.dataset.done === '1') return;
+      card.dataset.done = '1';
+
+      answered += 1;
+      if (item.type === 'mcq') mcqAnswered += 1;
+      if (item.type === 'tf') tfAnswered += 1;
+
+      if (opt === item.answer) {
+        div.classList.add('correct');
+        const fb = document.createElement('div');
+        fb.className = 'feedback good';
+        fb.innerText = '✅ Correct';
+        card.appendChild(fb);
+        correct += 1;
+      } else {
+        div.classList.add('wrong');
+        const fb = document.createElement('div');
+        fb.className = 'feedback bad';
+        fb.innerText = `❌ Wrong — Correct answer: ${item.answer}`;
+        card.appendChild(fb);
+        wrong += 1;
+        [...card.querySelectorAll('.option')].forEach(el => {
+          if (el.innerText === item.answer) el.classList.add('correct');
+        });
+      }
+      updateStats();
+    });
+
+    optionsWrap.appendChild(div);
+  });
+
+  card.appendChild(optionsWrap);
+  allCards.push(card);
+  return card;
+}
+
+function renderQuiz(shuffleMode = true) {
+  answered = 0;
+  correct = 0;
+  wrong = 0;
+  mcqAnswered = 0;
+  tfAnswered = 0;
+  allCards = [];
+
+  const mcqSection = document.getElementById('mcqSection');
+  const tfSection = document.getElementById('tfSection');
+  mcqSection.innerHTML = '';
+  tfSection.innerHTML = '';
+
+  const mcqs = shuffleMode ? shuffle([...data.mcq]) : [...data.mcq];
+  const tfs = shuffleMode ? shuffle([...data.tf]) : [...data.tf];
+
+  const mcqTitle = document.createElement('h2');
+  mcqTitle.className = 'section-title';
+  mcqTitle.innerText = 'Multiple Choice Questions (25)';
+  mcqSection.appendChild(mcqTitle);
+
+  const mcqNote = document.createElement('div');
+  mcqNote.className = 'section-note';
+  mcqNote.innerText = 'MCQ section comes first.';
+  mcqSection.appendChild(mcqNote);
+
+  mcqs.forEach((item, idx) => {
+    mcqSection.appendChild(makeCard(item, idx + 1, 'MCQ', idx + 1));
+  });
+
+  const tfTitle = document.createElement('h2');
+  tfTitle.className = 'section-title';
+  tfTitle.innerText = 'True / False Questions (20)';
+  tfSection.appendChild(tfTitle);
+
+  const tfNote = document.createElement('div');
+  tfNote.className = 'section-note';
+  tfNote.innerText = 'T/F section comes second.';
+  tfSection.appendChild(tfNote);
+
+  tfs.forEach((item, idx) => {
+    const tfItem = {
+      type: 'tf',
+      q: item.q,
+      options: ['True', 'False'],
+      answer: item.answer
+    };
+    tfSection.appendChild(makeCard(tfItem, idx + 1, 'T/F', idx + 1));
+  });
+
+  updateStats();
+}
+
+document.getElementById('shuffleBtn').addEventListener('click', () => {
+  renderQuiz(true);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  allCards.forEach(card => {
+    card.dataset.done = '0';
+    card.querySelectorAll('.option').forEach(el => {
+      el.classList.remove('correct', 'wrong');
+    });
+    const fb = card.querySelector('.feedback');
+    if (fb) fb.remove();
+  });
+  answered = 0;
+  correct = 0;
+  wrong = 0;
+  mcqAnswered = 0;
+  tfAnswered = 0;
+  updateStats();
+});
+
+document.getElementById('showAllBtn').addEventListener('click', () => {
+  allCards.forEach(card => {
+    if (card.dataset.done === '1') return;
+    const answer = card.dataset.answer;
+    card.dataset.done = '1';
+    const opts = card.querySelectorAll('.option');
+    opts.forEach(el => {
+      if (el.innerText === answer) el.classList.add('correct');
+    });
+    const fb = document.createElement('div');
+    fb.className = 'feedback';
+    fb.innerText = `Answer: ${answer}`;
+    card.appendChild(fb);
+    answered += 1;
+    if (card.dataset.type === 'mcq') mcqAnswered += 1;
+    if (card.dataset.type === 'tf') tfAnswered += 1;
+  });
+  updateStats();
+});
+
+renderQuiz(true);
+</script>
+</body>
+</html>
