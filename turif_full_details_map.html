@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_346ae33a3c810551feefb22e18af96ab {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_346ae33a3c810551feefb22e18af96ab" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_346ae33a3c810551feefb22e18af96ab = L.map(
+                "map_346ae33a3c810551feefb22e18af96ab",
+                {
+                    center: [31.813277, 39.047591],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_346ae33a3c810551feefb22e18af96ab);
+
+            
+
+        
+    
+            var tile_layer_b2ba19c884c3071cc35be38f6050a51b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b2ba19c884c3071cc35be38f6050a51b.addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var marker_bb0770113f9d1d1b73ab37eecea0cb93 = L.marker(
+                [31.813277, 39.047591],
+                {
+}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var icon_8b7c5676d95d2b91a7b9f2bf775216b0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d310a93f0a94ba4e16dbe2cd494c8bb3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f02fb5b6d37f8971f4bf2396b55c04a3 = $(`<div id="html_f02fb5b6d37f8971f4bf2396b55c04a3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h3>Project Location</h3>             <b>Latitude:</b> 31.813277<br>             <b>Longitude:</b> 39.047591         </div>         </div>`)[0];
+                popup_d310a93f0a94ba4e16dbe2cd494c8bb3.setContent(html_f02fb5b6d37f8971f4bf2396b55c04a3);
+            
+        
+
+        marker_bb0770113f9d1d1b73ab37eecea0cb93.bindPopup(popup_d310a93f0a94ba4e16dbe2cd494c8bb3)
+        ;
+
+        
+    
+    
+            marker_bb0770113f9d1d1b73ab37eecea0cb93.bindTooltip(
+                `<div>
+                     Project Location
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bb0770113f9d1d1b73ab37eecea0cb93.setIcon(icon_8b7c5676d95d2b91a7b9f2bf775216b0);
+            
+    
+            var marker_8a62e0887b3153721d72223ace13671a = L.marker(
+                [31.659186, 38.632949],
+                {
+}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var icon_5d34d50da56941b2705167a7f9d8e1dc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a0dbdb4b744f78dbaae6c835d46001d = L.popup({
+  "maxWidth": 450,
+});
+
+        
+            
+                var html_6dd7c032755d5d3b0fb00d05bd354267 = $(`<div id="html_6dd7c032755d5d3b0fb00d05bd354267" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width: 360px;">         <h3 style="margin-bottom: 6px;">Existing Aljaber Land in Turif</h3>         <div style="margin-bottom: 8px;">             <b>Latitude:</b> 31.659186<br>             <b>Longitude:</b> 38.632949         </div>         <table style="width:100%; border-collapse: collapse; font-size: 12px;">                      <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Distance To Plant (KM)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">67</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Contract Duration (Year)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation With Workshop</td>             <td style="padding:6px 8px; border:1px solid #ddd;">NO</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction Duration</td>             <td style="padding:6px 8px; border:1px solid #ddd;">2-4 Months</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation Type</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Both</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Expected Capacity / Meter square</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Electricity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Water</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Number of Room</td>             <td style="padding:6px 8px; border:1px solid #ddd;">75</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity (Number of Employee)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">250</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land Price / Meter square / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land cost / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Monthly Operating Expenses</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction and Associated Cost</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  </table>     </div>     </div>`)[0];
+                popup_2a0dbdb4b744f78dbaae6c835d46001d.setContent(html_6dd7c032755d5d3b0fb00d05bd354267);
+            
+        
+
+        marker_8a62e0887b3153721d72223ace13671a.bindPopup(popup_2a0dbdb4b744f78dbaae6c835d46001d)
+        ;
+
+        
+    
+    
+            marker_8a62e0887b3153721d72223ace13671a.bindTooltip(
+                `<div>
+                     Existing Aljaber Land in Turif
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8a62e0887b3153721d72223ace13671a.setIcon(icon_5d34d50da56941b2705167a7f9d8e1dc);
+            
+    
+            var poly_line_142ee5e8001ead918305252bd19be085 = L.polyline(
+                [[31.659186, 38.632949], [31.813277, 39.047591]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var marker_7ce7f6bf79dd6f0a9fb13ba42ffec88e = L.marker(
+                [31.652538, 38.642626],
+                {
+}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var icon_d8e653eaf0778c320d28205dade4cc80 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0d7b57d2c8199d25883c0c27b62e5775 = L.popup({
+  "maxWidth": 450,
+});
+
+        
+            
+                var html_bfbf460176fe4e968cf2f889e406b90d = $(`<div id="html_bfbf460176fe4e968cf2f889e406b90d" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width: 360px;">         <h3 style="margin-bottom: 6px;">Inside Turif</h3>         <div style="margin-bottom: 8px;">             <b>Latitude:</b> 31.652538<br>             <b>Longitude:</b> 38.642626         </div>         <table style="width:100%; border-collapse: collapse; font-size: 12px;">                      <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Distance To Plant (KM)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">66</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Contract Duration (Year)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">25</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation With Workshop</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction Duration</td>             <td style="padding:6px 8px; border:1px solid #ddd;">2-4 Months</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation Type</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Both</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Expected Capacity / Meter square</td>             <td style="padding:6px 8px; border:1px solid #ddd;">25000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Unlimited</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Electricity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Water</td>             <td style="padding:6px 8px; border:1px solid #ddd;">No</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Number of Room</td>             <td style="padding:6px 8px; border:1px solid #ddd;">150</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity (Number of Employee)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">520</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land Price / Meter square / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">2</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land cost / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">50,000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Monthly Operating Expenses</td>             <td style="padding:6px 8px; border:1px solid #ddd;">606,900</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction and Associated Cost</td>             <td style="padding:6px 8px; border:1px solid #ddd;">5,000,000</td>         </tr>                  </table>     </div>     </div>`)[0];
+                popup_0d7b57d2c8199d25883c0c27b62e5775.setContent(html_bfbf460176fe4e968cf2f889e406b90d);
+            
+        
+
+        marker_7ce7f6bf79dd6f0a9fb13ba42ffec88e.bindPopup(popup_0d7b57d2c8199d25883c0c27b62e5775)
+        ;
+
+        
+    
+    
+            marker_7ce7f6bf79dd6f0a9fb13ba42ffec88e.bindTooltip(
+                `<div>
+                     Inside Turif
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ce7f6bf79dd6f0a9fb13ba42ffec88e.setIcon(icon_d8e653eaf0778c320d28205dade4cc80);
+            
+    
+            var poly_line_fc5bdf22715f04690ed229b0593773d4 = L.polyline(
+                [[31.652538, 38.642626], [31.813277, 39.047591]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var marker_d1d02f4d21b0bd726b78ba4b75ad9a63 = L.marker(
+                [31.612673, 38.893457],
+                {
+}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var icon_56f8f22954173bb6d75f7e93f62b9e04 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_75479caa8faf2989f70e4add4f40fb9b = L.popup({
+  "maxWidth": 450,
+});
+
+        
+            
+                var html_b6234fdaabb1e7f93975cd5213c56b3e = $(`<div id="html_b6234fdaabb1e7f93975cd5213c56b3e" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width: 360px;">         <h3 style="margin-bottom: 6px;">On Turif Road</h3>         <div style="margin-bottom: 8px;">             <b>Latitude:</b> 31.612673<br>             <b>Longitude:</b> 38.893457         </div>         <table style="width:100%; border-collapse: collapse; font-size: 12px;">                      <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Distance To Plant (KM)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">47</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Contract Duration (Year)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">25</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation With Workshop</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction Duration</td>             <td style="padding:6px 8px; border:1px solid #ddd;">2-4 Months</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation Type</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Both</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Expected Capacity / Meter square</td>             <td style="padding:6px 8px; border:1px solid #ddd;">25000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Unlimited</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Electricity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">No</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Water</td>             <td style="padding:6px 8px; border:1px solid #ddd;">No</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Number of Room</td>             <td style="padding:6px 8px; border:1px solid #ddd;">150</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity (Number of Employee)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">520</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land Price / Meter square / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">2</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land cost / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">50,000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Monthly Operating Expenses</td>             <td style="padding:6px 8px; border:1px solid #ddd;">606,900</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction and Associated Cost</td>             <td style="padding:6px 8px; border:1px solid #ddd;">5,000,000</td>         </tr>                  </table>     </div>     </div>`)[0];
+                popup_75479caa8faf2989f70e4add4f40fb9b.setContent(html_b6234fdaabb1e7f93975cd5213c56b3e);
+            
+        
+
+        marker_d1d02f4d21b0bd726b78ba4b75ad9a63.bindPopup(popup_75479caa8faf2989f70e4add4f40fb9b)
+        ;
+
+        
+    
+    
+            marker_d1d02f4d21b0bd726b78ba4b75ad9a63.bindTooltip(
+                `<div>
+                     On Turif Road
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d1d02f4d21b0bd726b78ba4b75ad9a63.setIcon(icon_56f8f22954173bb6d75f7e93f62b9e04);
+            
+    
+            var poly_line_ca26cb85c40a5e1e0d74abb952e59c81 = L.polyline(
+                [[31.612673, 38.893457], [31.813277, 39.047591]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var marker_2fe4bbade3bcb074c13aa0a6f1461edf = L.marker(
+                [31.774458, 38.984204],
+                {
+}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            var icon_4ec1a2dbac59951a760b791468a24781 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c0ce8c84f35addddf7a4b55ced8b197 = L.popup({
+  "maxWidth": 450,
+});
+
+        
+            
+                var html_0c718303a98fd18ed9feb0207a7e40bd = $(`<div id="html_0c718303a98fd18ed9feb0207a7e40bd" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width: 360px;">         <h3 style="margin-bottom: 6px;">Modon</h3>         <div style="margin-bottom: 8px;">             <b>Latitude:</b> 31.774458<br>             <b>Longitude:</b> 38.984204         </div>         <table style="width:100%; border-collapse: collapse; font-size: 12px;">                      <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Distance To Plant (KM)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">14</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Contract Duration (Year)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">15</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation With Workshop</td>             <td style="padding:6px 8px; border:1px solid #ddd;">No</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction Duration</td>             <td style="padding:6px 8px; border:1px solid #ddd;">1-2 Years</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Accommodation Type</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Apartment</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Expected Capacity / Meter square</td>             <td style="padding:6px 8px; border:1px solid #ddd;">5000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Unlimited</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Electricity</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Water</td>             <td style="padding:6px 8px; border:1px solid #ddd;">Yes</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Number of Room</td>             <td style="padding:6px 8px; border:1px solid #ddd;">150</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Capacity (Number of Employee)</td>             <td style="padding:6px 8px; border:1px solid #ddd;">520</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land Price / Meter square / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">5</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Rents Land cost / Year</td>             <td style="padding:6px 8px; border:1px solid #ddd;">25,000</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Monthly Operating Expenses</td>             <td style="padding:6px 8px; border:1px solid #ddd;">TBC</td>         </tr>                  <tr>             <td style="padding:6px 8px; border:1px solid #ddd; font-weight:bold;">Construction and Associated Cost</td>             <td style="padding:6px 8px; border:1px solid #ddd;">13,500,000</td>         </tr>                  </table>     </div>     </div>`)[0];
+                popup_6c0ce8c84f35addddf7a4b55ced8b197.setContent(html_0c718303a98fd18ed9feb0207a7e40bd);
+            
+        
+
+        marker_2fe4bbade3bcb074c13aa0a6f1461edf.bindPopup(popup_6c0ce8c84f35addddf7a4b55ced8b197)
+        ;
+
+        
+    
+    
+            marker_2fe4bbade3bcb074c13aa0a6f1461edf.bindTooltip(
+                `<div>
+                     Modon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fe4bbade3bcb074c13aa0a6f1461edf.setIcon(icon_4ec1a2dbac59951a760b791468a24781);
+            
+    
+            var poly_line_e5de3176f7a2bfceae2d4ef9a8389bab = L.polyline(
+                [[31.774458, 38.984204], [31.813277, 39.047591]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+            tile_layer_b2ba19c884c3071cc35be38f6050a51b.addTo(map_346ae33a3c810551feefb22e18af96ab);
+        
+    
+                marker_bb0770113f9d1d1b73ab37eecea0cb93.setIcon(icon_8b7c5676d95d2b91a7b9f2bf775216b0);
+            
+    
+                marker_8a62e0887b3153721d72223ace13671a.setIcon(icon_5d34d50da56941b2705167a7f9d8e1dc);
+            
+    
+                marker_7ce7f6bf79dd6f0a9fb13ba42ffec88e.setIcon(icon_d8e653eaf0778c320d28205dade4cc80);
+            
+    
+                marker_d1d02f4d21b0bd726b78ba4b75ad9a63.setIcon(icon_56f8f22954173bb6d75f7e93f62b9e04);
+            
+    
+                marker_2fe4bbade3bcb074c13aa0a6f1461edf.setIcon(icon_4ec1a2dbac59951a760b791468a24781);
+            
+</script>
+</html>
